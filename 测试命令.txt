@@ -1,0 +1,26 @@
+注册成功
+http://127.0.0.1:7001/api/register?username=makeson&email=123@qq.com&password=1234567&repassword=1234567
+
+无效邮箱
+http://127.0.0.1:7001/api/register?username=makeson&email=123qq.com&password=1234567&repassword=1234567
+
+无效域名
+http://127.0.0.1:7001/api/register?username=makeson&email=123@qom&password=1234567&repassword=1234567
+
+
+登录
+http://127.0.0.1:7001/api/login?email=123@qq.com&password=1234567
+
+创建表单
+http://127.0.0.1:7001/api/createQNR?owner=123@qq.com&name=server&status=carft&questionList=[{type:singleChoice,question:???,options:[{isSelected:true,option:1},{isSelected:false,option:2}]},{type:textQuestion,question:??,text:111},{type:textQuestion,question:?,text:222}]
+
+?author=xyl&status=0&time=2016-01-24T12:40:24.035Z&title=test&ask_list=[]
+
+
+curl命令
+注册成功:
+curl -H "Content-Type: application/json" -X POST -d '{"username": "00100", "email":"242@qq.com","password":"1234567","repassword":"1234567"}'  http://127.0.0.1:7001/api/register
+
+登录：
+curl -H "Content-Type: application/json" -X POST -d '{"email":"242@qq.com","password":"1234567"}'  http://127.0.0.1:7001/api/login
+
