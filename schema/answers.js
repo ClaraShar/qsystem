@@ -9,11 +9,10 @@ module.exports = new mongoose.Schema({
     "ans_list" : [{
         //第一题
         "ans_aid" : Number,//题号同aid
-        //"type" : Number,//题型，1 单选；2 多选；3 问答
-        "ans_isNecessary" : Boolean,//是否必填项
+        //"type" : Number,//题型，1 单选；2 多选；3 问
        // "ask" : String,//题目
         "ans" : String,//问答内容，可为空
-        "choice" : String, //所选选项，可为空
+        "choice" : String, //所选选项，可为空.例如：ACD =>"1,3,4"
        },{
         //第二题
     }]
