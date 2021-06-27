@@ -11,8 +11,13 @@ function ansFill(req, res){
   
    console.log(form.ans_list);
     new Promise((resolve, reject) => {
-
-                resolve(form);
+               ansModel  
+        .find({}).sort({ans_qid: -1})
+        .then(result => {
+            console.log(result[0]);
+            form.ans_qid = result[0].ans_qid + 1;
+            resolve(form);
+        })
            
         }).then(form=>
             {
