@@ -3,10 +3,10 @@ let quesModel = require('../../model/questionnaires')
 
 function submitQues(req, res){
     const form = {};
-    if(req.query.qid) form.qid = req.query.qid;
-    if(req.query.title) form.title = req.query.title;
-    if(req.query.time) form.time = req.query.time;
-    if(req.query.ask_list) form.ask_list = req.query.ask_list;
+    if(req.body.qid) form.qid = req.body.qid;
+    if(req.body.title) form.title = req.body.title;
+    if(req.body.time) form.time = req.body.time;
+    if(req.body.ask_list) form.ask_list = req.body.ask_list;
 
     
     new Promise((resolve, reject) => {

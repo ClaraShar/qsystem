@@ -1,6 +1,10 @@
 var express = require('express')
+var handlebars = require("express3-handlebars").create({ defaultLayout: "main"});
 
 module.exports = function(app){
+
+    app.engine("handlebars", handlebars.engine); //设置视图引擎
+    app.set("view engine", "handlebars");
 
     app.use(express.json())
     app.use(express.urlencoded({ extended: false }))
@@ -26,4 +30,9 @@ module.exports = function(app){
 
     //编辑提交页面
     app.post('/api/edit/submit',require('./submit'))
+
+    // 测试路由
+    app.get('/api/test',function(req, res){
+      res.render("thank-you")
+    })
 }

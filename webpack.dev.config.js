@@ -28,8 +28,7 @@ module.exports = {
         host: '0.0.0.0',
         hot: true,
         proxy:{
-            '/api':'http://localhost:3033',
-            '/api/create':'http://localhost:3033'
+            '/api':'http://localhost:3033'
         }
     },
 

@@ -3,7 +3,7 @@ let quesModel = require('../../model/questionnaires')
 
 function manageQues(req, res){
     var username = req.query.user;
-    
+
     new Promise((resolve, reject) => {
         quesModel
             .find({author : username})

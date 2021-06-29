@@ -9,7 +9,6 @@ function deleteQues(req, res){
         quesModel
             .find({qid:{$in:deleteList}})
             .then(result => {
-                console.log(result)
                 let responseData = { data: {} }
                 if(!result[0]){
                     util.responseClient(res, 200, 0, '数据库无记录', responseData);
