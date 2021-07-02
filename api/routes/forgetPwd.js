@@ -1,10 +1,10 @@
 let util = require('./util')
 let userModel = require('../../model/users')
 
-function changePassword(req, res){
+function forgetPassword(req, res){
     const form = {};
     if(req.body.user) form.user = req.body.user;
-    if(req.body.originPwd) form.originPwd = req.body.originPwd;
+    if(req.body.verification) form.verification = req.body.verification;
     if(req.body.newPwd) form.newPwd = req.body.newPwd;
     
     new Promise((resolve, reject) => {
@@ -18,9 +18,9 @@ function changePassword(req, res){
                     util.responseClient(res, 200, 0, '查无此人', responseData)
                     return;
                 }
-                //验证旧密码
-                if(result[0].password != form.originPwd){
-                    util.responseClient(res, 200, 2, '密码错误', responseData)
+                //验证码
+                if(result[0].verification != form.verification){
+                    util.responseClient(res, 200, 2, '验证失败', responseData)
                 }
                 resolve(form);
             })
@@ -39,4 +39,4 @@ function changePassword(req, res){
     })
 }
 
-module.exports = changePassword
+module.exports = forgetPassword

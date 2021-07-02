@@ -20,7 +20,10 @@ module.exports = function(app){
     app.post('/api/manage/delete',require('./delete'))
 
     //修改密码
-    app.get('/api/changePwd',require('./changePwd'))
+    app.post('/api/changePwd',require('./changePwd'))
+
+    //修改密码
+    app.post('/api/forgetPwd',require('./forgetPwd'))
 
     //新建问卷页面
     app.post('/api/create',require('./create'))

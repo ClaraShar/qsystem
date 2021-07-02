@@ -27,7 +27,7 @@
         }).then(res=>res.json())
             .then(res=>{
             console.log(res.data.data);
-          });*/
+          });
     const Params = {
         "deleteList":[108,109]
     };
@@ -42,4 +42,36 @@
         .then(res =>{
         console.log(res.code);
     });
+    const Params = {
+        "user":"",
+        "originPwd":"",
+        "newPwd":""
+    };
+    fetch('/api/changePwd',{
+        method: 'post',
+        body: JSON.stringify(Params),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+    }).then(res => res.json())
+        .then(res=>{
+        console.log(res);
+    });*/
+    const Params = {
+        "user":"",
+        "verification":"",
+        "newPwd":""
+    };
+    fetch('/api/forgetPwd',{
+        method: 'post',
+        body: JSON.stringify(Params),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+    }).then(res => res.json())
+        .then(res=>{
+        console.log(res);
+    })
 </script>
