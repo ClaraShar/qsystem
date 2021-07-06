@@ -200,4 +200,60 @@
     });
 
 */
+
+//-------------text----------
+/*
+ const Params = {
+        "qid":2,
+        "aid":1
+    };
+    fetch('/api/text',{
+        method: 'post',
+        body: JSON.stringify(Params),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+    }).then(res => res.json())
+        .then(res =>{
+        console.log(res.data.data);
+    });*/
+
+
+//---------------------ques---------------
+
+/*const Params = {
+        "qid":4
+       
+    };
+    fetch('/api/ques',{
+        method: 'post',
+        body: JSON.stringify(Params),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+    }).then(res => res.json())
+        .then(res =>{
+        console.log(res.data.data);
+    });*/ 
+
+
+//-----------------analysis----------
+const Params = {
+        "qid":2
+       
+    };
+    fetch('/api/analysis',{
+        method: 'post',
+        body: JSON.stringify(Params),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+    }).then(res => res.json())
+        .then(res =>{
+        console.log(res.data.data);
+    });
+
 </script>
