@@ -286,7 +286,7 @@ let promise4=new Promise((resolve, reject) => {
     });
 
 
-    Promise.all([promise0,promise1,promise2,promise3,promise4]).then(function()
+    Promise.all([promise0,promise1,promise2,promise3,promise4,promise5]).then(function()
     {
             let responseData = {data:{}}
             responseData.data=form;
