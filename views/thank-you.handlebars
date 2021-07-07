@@ -240,7 +240,7 @@
 
 
 //-----------------analysis----------
-const Params = {
+/*const Params = {
         "qid":2
        
     };
@@ -255,5 +255,25 @@ const Params = {
         .then(res =>{
         console.log(res.data.data);
     });
+*/
 
+
+
+//----------------deleAns------------
+const Params = {
+        "ans_qid":''
+       
+    };
+    fetch('/api/deleAns',{
+        method: 'post',
+        body: JSON.stringify(Params),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+    }).then(res => res.json())
+        .then(res =>{
+        console.log(res.data);
+    });
+    
 </script>
