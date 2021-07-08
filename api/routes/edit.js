@@ -8,9 +8,9 @@ function editQues(req, res){
         quesModel
             .findOne({qid:Qid})
             .then(result => {
+                console.log(result)
                 let responseData = { data: {} }
                 responseData.data = result;
-                console.log(responseData)
                 util.responseClient(res, 200, 1, 'success', responseData)
             })
         }).catch((err) => {

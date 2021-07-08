@@ -22,7 +22,7 @@ module.exports = function(app){
     //修改密码
     app.post('/api/changePwd',require('./changePwd'))
 
-    //修改密码
+    //忘记密码
     app.post('/api/forgetPwd',require('./forgetPwd'))
 
     //新建问卷页面
@@ -33,6 +33,9 @@ module.exports = function(app){
 
     //编辑提交页面
     app.post('/api/edit/submit',require('./submit'))
+
+    //发布问卷
+    app.post('/api/release', require('./release'))
 
     // 测试路由
     app.get('/api/test',function(req, res){
