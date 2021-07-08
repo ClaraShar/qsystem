@@ -1,7 +1,5 @@
 let util = require('../util')
 let quesModel = require('../../../model/questionnaires')
-let ansModel=require('../../../model/answers');
-
 
 function checkQues(req, res){
     const form = {};
@@ -13,6 +11,11 @@ function checkQues(req, res){
 
    let promise0 = new Promise((resolve, reject) => {
     quesModel.find({ qid:form.qid}).then(result=>{
+
+        let responseData = {data:{}}
+        if(!result[0])
+        util.responseClient(res, 200, 0, 'not exists', responseData)
+
 form.author=result[0].author;
 form.title=result[0].title;
 form.status=result[0].status;
