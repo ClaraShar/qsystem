@@ -1,26 +1,3 @@
-/*url: '/api/check/ques' //查看问卷详情
-method: 'post',
-params:  
-{
-    qid:'',
-    ans_qid:'',
-}
-res: {
-    qid:1234,//问卷号
-    author:'',//作者
-    title: '',//问卷标题
-    status:'',//问卷状态
-    total:'',//答卷人次
-    start_time:'',//发布时间
-    time: '',//截止时间
-    cnt:'',//总题数
-   cnt1:'',//A选列表
-   cnt2:'',//多选数
-   cnt3:'',//文本题数
-
-}
-*/
-
 let util = require('../util')
 let quesModel = require('../../../model/questionnaires')
 let ansModel=require('../../../model/answers');
@@ -38,6 +15,9 @@ function analysis(req, res){
 
    let promise0 = new Promise((resolve, reject) => {
     quesModel.find({ qid:form.qid}).then(result=>{
+        let responseData = {data:{}}
+        if(!result[0])
+        util.responseClient(res, 200, 0, 'not exists', responseData)
 form.author=result[0].author;
 form.title=result[0].title;
 form.status=result[0].status;
