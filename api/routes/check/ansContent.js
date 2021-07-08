@@ -11,7 +11,10 @@ let promise1=new Promise((resolve, reject) => {
     ansModel
         .find({ans_qid:Ans_Qid})
         .then(result => {
-           
+            let responseData = {data:{}}
+        if(!result[0])
+        util.responseClient(res, 200, 0, 'not exists', responseData)
+        else
           out1=result;
           resolve();
         })
@@ -23,6 +26,11 @@ let promise2=new Promise((resolve, reject) => {
     quesModel
         .find({qid:Qid})
         .then(result => {
+
+            let responseData = {data:{}}
+            if(!result[0])
+            util.responseClient(res, 200, 0, 'not exists', responseData)
+            else
             out2=result;
             resolve();
         })
