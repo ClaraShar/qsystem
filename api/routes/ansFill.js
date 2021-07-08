@@ -1,3 +1,24 @@
+/*url: '/api/fill' //填写问卷页面
+method: 'post',
+params: {
+    qid:'',
+    ans_time: '',
+    ans_list: [{
+        //第一题
+        ans_aid: 1,//题号
+        //type: 1,//题型，1 单选；2 多选；3 问答
+        isNecessary: true,//是否必填项
+        ans: '',//问答内容，可为空
+        choice: '',//所选选项，可为空
+    },{
+        //第二题
+    }]
+}
+res: {
+    ans_qid: 1234,//返回的答卷号由系统自动生成，若为0则失败
+
+}*/
+
 let util = require('./util')
 let quesModel = require('../../model/questionnaires')
 let ansModel=require('../../model/answers');
@@ -6,10 +27,12 @@ function ansFill(req, res){
     const form = {};
     if(req.body.username) form.username = req.body.username;
     if(req.body.qid) form.qid = req.body.qid;
-    console.log(1);
+    //console.log(1);
     if(req.body.ans_list) form.ans_list=req.body.ans_list;
-  
-   console.log(form.ans_list);
+ // var t= Date.now();
+  //t.toLocaleString( );
+  // console.log(t);
+   form.ans_time=req.body.ans_time;
  let promise1= new Promise((resolve, reject) => {
 
         ansModel  

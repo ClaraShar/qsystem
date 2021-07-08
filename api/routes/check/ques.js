@@ -1,8 +1,5 @@
 let util = require('../util')
 let quesModel = require('../../../model/questionnaires')
-let ansModel=require('../../../model/answers');
-const { callbackify } = require('util');
-
 
 function checkQues(req, res){
     const form = {};
@@ -14,6 +11,11 @@ function checkQues(req, res){
 
    let promise0 = new Promise((resolve, reject) => {
     quesModel.find({ qid:form.qid}).then(result=>{
+
+        let responseData = {data:{}}
+        if(!result[0])
+        util.responseClient(res, 200, 0, 'not exists', responseData)
+
 form.author=result[0].author;
 form.title=result[0].title;
 form.status=result[0].status;
@@ -27,46 +29,40 @@ form.time=result[0].time;
 
 let promise1=new Promise((resolve, reject) => {
 
-    quesModel.find({qid:form.qid, 'ask_list.type':1}).count(function (err, result1) {
-        if (err) {
-            reject();
-        }
-        form.cnt1 = result1;
+    quesModel.find({qid:form.qid}).then(result =>
+        {
+           
+           
+          var cnt1=0,cnt2=0,cnt3=0,cnt=0;
+          let j=0;
+          console.log(result);
+               while(result[0].ask_list[j]){
+                   console.log(3);let k=0; 
+                 
+              if(result[0].ask_list[j].type==1)
+                   cnt1+=1;
+              if(result[0].ask_list[j].type==2)
+                   cnt2+=1;   
+              if(result[0].ask_list[j].type==3)
+                   cnt3+=1; 
+               j++; 
+           }
+              
+           
+           
+           
+        form.cnt1=cnt1;
+        form.cnt2=cnt2;
+        form.cnt3=cnt3;
+        form.cnt=cnt1+cnt2+cnt3;
         console.log(form.cnt1);
-       resolve();
-    })
+      resolve();
+   })
 });
 
-let promise2=new Promise((resolve, reject) => {
-    quesModel.find({qid:form.qid, 'ask_list.type':2}).count(function (err, result2) {
-        if (err) {
-            reject();
-        }
-        form.cnt2 = result2;
-        console.log(form.cnt2);
-        resolve();
-    })
-
-});
-
-let promise3=new Promise((resolve, reject) => {
-    
-   
-    quesModel.find({qid:form.qid, 'ask_list.type':3}).count(function (err, result3) {
-        if (err) {
-            reject();
-        }
-        form.cnt3 = result3;
-        console.log(form.cnt3);
-        form.cnt=form.cnt2+form.cnt3+form.cnt1;
-        resolve();
-    })
 
 
-    });
-
-
-    Promise.all([promise1,promise2,promise3]).then(function()
+    Promise.all([promise0,promise1]).then(function()
     {
             let responseData = {data:{}}
             responseData.data=form;
