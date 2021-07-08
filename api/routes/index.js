@@ -52,6 +52,9 @@ module.exports = function(app){
     //查看问卷
     app.post('/api/ques',require('./check/ques'))
     
+     //查看问卷内容
+    app.post('/api/quesContent',require('./check/quesContent'))
+    
     //查看答卷情况
     app.post('/api/ans',require('./check/ans'))
 
