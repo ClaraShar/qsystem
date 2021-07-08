@@ -22,8 +22,11 @@ new Promise((resolve, reject) => {
             let responseData = {data:{}}
             responseData.data=result;
             console.log(responseData)
+            if(result[0])
             util.responseClient(res, 200, 1, 'success', responseData)
-            
+            else
+            util.responseClient(res, 200, 0, 'not exists', responseData)
+
         })
     }).catch((err) => {
         console.log(err);
