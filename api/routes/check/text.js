@@ -29,7 +29,7 @@ new Promise((resolve, reject) => {
         .find({qid:Qid,'ans_list.ans_aid':Aid},{ans_qid:1,'ans_list.ans_aid':1,'ans_list.ans':1,ans_time:1})
         .then(result => {
            
-
+            let responseData = {data:[]}
           let i=0,j=0; var out={};var time={};var  form={};
 
           while(result[i])
@@ -49,14 +49,15 @@ new Promise((resolve, reject) => {
               
               j++;
             }
-            i++;j=0;
+            i++;j=0;console.log(i); responseData.length=i;
           }
          
 
 
-            let responseData = {data:{}}
+           
             
             responseData.data=out;
+          
             console.log(result[1].ans_list)
             if(result[0])
             util.responseClient(res, 200, 1, 'success', responseData)
