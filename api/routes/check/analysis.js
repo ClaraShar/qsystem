@@ -18,15 +18,15 @@ function analysis(req, res){
         let responseData = {data:{}}
         if(!result[0])
         util.responseClient(res, 200, 0, 'not exists', responseData)
-form.author=result[0].author;
-form.title=result[0].title;
-form.status=result[0].status;
-form.total=result[0].total;
-form.start_time=result[0].start_time;
-form.time=result[0].time;
-    }) 
-             resolve();
-         });
+            form.author=result[0].author;
+            form.title=result[0].title;
+            form.status=result[0].status;
+            form.total=result[0].total;
+            form.start_time=result[0].start_time;
+            form.time=result[0].time;
+            }) 
+            resolve();
+        });
 
 
 let promise1=new Promise((resolve, reject) => {
@@ -71,10 +71,7 @@ let promise1=new Promise((resolve, reject) => {
          form.cnt1=cnt1;
          console.log(form.cnt1);
        resolve();
-    })
-      
-       
-    
+    })    
 });
 
 let promise2=new Promise((resolve, reject) => {
@@ -172,7 +169,6 @@ let promise3=new Promise((resolve, reject) => {
 
 let promise4=new Promise((resolve, reject) => {
     
-   
     ansModel.find({qid:form.qid,'ans_list.choice':"D"}).then(result =>
         {
             //按照题目数初始化cnt1为零

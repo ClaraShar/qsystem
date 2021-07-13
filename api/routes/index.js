@@ -25,8 +25,11 @@ module.exports = function(app){
     //忘记密码
     app.post('/api/forgetPwd',require('./forgetPwd'))
 
-    //新建问卷页面
-    app.post('/api/create',require('./create'))
+    //新建问卷页面-保存
+    app.post('/api/createSave',require('./createSave'))
+
+    //新建问卷页面-提交
+    app.post('/api/createSubmit',require('./createSubmit'))
 
     //申请编辑页面
     app.get('/api/edit',require('./edit'))
@@ -48,6 +51,9 @@ module.exports = function(app){
 
     //查看问卷fenxi
     app.post('/api/analysis',require('./check/analysis'))
+
+    //查看问卷xyl改
+    app.post('/api/newAnalysis',require('./check/newAnalysis'))
 
     //查看问卷
     app.post('/api/ques',require('./check/ques'))

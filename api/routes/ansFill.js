@@ -45,8 +45,8 @@ function ansFill(req, res){
            
         }).then(form=>
             {
-                
-               // console.log(total);
+                console.log("form.ans_list:")
+                console.log(form.ans_list);
                 //插入答卷表数据
                ansModel.create(form).then((doc) => 
                 {
@@ -55,31 +55,21 @@ function ansFill(req, res){
                     console.log(responseData)
                     util.responseClient(res, 200, 1, 'success', responseData)
                 })
-
-               
-                
             }).catch((err) => {
                 console.log(err);
-            
-            
-    
-    
             });
 
 let promise2=new Promise((resolve,reject)=>
 {
      //更新问卷表次数+1
-               
-                  
-                quesModel.findOneAndUpdate(
-                    { qid: form.qid },
-                    { $inc:{ total: +1 } }).then((doc)=> {
-                       // let responseData = { data1: {},data2:{} }
-                        //responseData.data1 = doc;
-                        //console.log(responseData)
-                        //util.responseClient(res, 200, 1, 'success', responseData)
-                    })
-
+    quesModel.findOneAndUpdate(
+        { qid: form.qid },
+        { $inc:{ total: +1 } }).then((doc)=> {
+           // let responseData = { data1: {},data2:{} }
+            //responseData.data1 = doc;
+            //console.log(responseData)
+            //util.responseClient(res, 200, 1, 'success', responseData)
+        })
 });
 
 Promise.all([promise1,promise2]).then(function(){callbackify(null,data);});

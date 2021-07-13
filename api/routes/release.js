@@ -7,7 +7,7 @@ function releaseQues(req, res){
     
     new Promise((resolve, reject) => {
         quesModel
-            .findOneAndUpdate({qid:Qid},{$set:{start_time:start}})
+            .findOneAndUpdate({qid:Qid},{$set:{start_time:start,status:1}})
             .then((doc) => {
                 let responseData = { data: {} }
                 responseData.data = doc;

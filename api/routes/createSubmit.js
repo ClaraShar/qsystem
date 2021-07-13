@@ -1,17 +1,17 @@
 let util = require('./util')
 let quesModel = require('../../model/questionnaires')
 
-function createQues(req, res){
+function createSubmitQues(req, res){
     const form = {};
     if(req.body.author) form.author = req.body.author;
     if(req.body.title) form.title = req.body.title;
     if(req.body.time) form.time = req.body.time;
     if(req.body.ask_list) form.ask_list = req.body.ask_list;
+    if(req.body.start_time) form.start_time = req.body.start_time;
 
     form.qid = 0;//失败默认为0
-    form.status = 0;
+    form.status = 1;
     form.count = 0;
-    form.start_time = '';
     
     new Promise((resolve, reject) => {
         quesModel  
@@ -35,4 +35,4 @@ function createQues(req, res){
     })
 }
 
-module.exports = createQues
+module.exports = createSubmitQues

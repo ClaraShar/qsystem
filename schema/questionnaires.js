@@ -22,7 +22,8 @@ module.exports = new mongoose.Schema({
 	"author" : String,//创建者用户名
 	"title" : String,//问卷标题
     "status": Number,//发布状态，0未发布，1发布中,2已结束
-    "total" : Number,//收集份数,每填一次+1
+    "total" : Number,//
+    
     "start_time" : String,//问卷发布时间戳
     "time" : String,//问卷截止时间戳
     "ask_list" : [ask_list]
