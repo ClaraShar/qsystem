@@ -7,8 +7,6 @@ function submitQues(req, res){
     if(req.body.title) form.title = req.body.title;
     if(req.body.time) form.time = req.body.time;
     if(req.body.ask_list) form.ask_list = req.body.ask_list;
-    if(req.body.start_time) form.start_time = req.body.start_time;
-    form.status = 1;
     
     new Promise((resolve, reject) => {
         quesModel  

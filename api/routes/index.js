@@ -36,6 +36,9 @@ module.exports = function(app){
 
     //编辑提交页面
     app.post('/api/edit/submit',require('./submit'))
+
+    //编辑提交页面
+    app.post('/api/edit/save',require('./save'))
  
     //注册界面
     app.post('/api/register',require('./register'))
