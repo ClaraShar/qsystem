@@ -1,6 +1,6 @@
 let util = require('./util')
 let userModel = require('../../model/users')
-
+let md5=require("md5")
 
 //用户注册
 function register(req, res) {
@@ -8,7 +8,7 @@ function register(req, res) {
    // console.log(req.body.user);
     if(req.body.user) form.user = req.body.user;
     console.log(form.user);
-    if(req.body.pwd) form.pwd = req.body.pwd;
+    if(req.body.pwd) form.pwd = md5(req.body.pwd);
     if(req.body.verification) form.verification = req.body.verification;
 
     new Promise((resolve, reject) => {
