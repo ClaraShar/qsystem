@@ -2,12 +2,16 @@ let util = require('../util')
 let quesModel = require('../../../model/questionnaires')
 let ansModel=require('../../../model/answers');
 const { callbackify } = require('util');
+
+
 const ch=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+
+
 
 function analysis(req, res){
     const form = {};
    // console.log(ch[2])
-    if(req.body.qid) form.qid = req.body.qid;
+    if(req.body.qid) form.qid = req.query.qid;
     //form.ans_qid=req.body.ans_qid;
    // console.log(1);
    // if(req.body.type) form.type=req.body.type;
@@ -51,10 +55,11 @@ let promise1=new Promise((resolve, reject) => {
 
     ansModel.find({qid:form.qid}).then(result =>
          {
-            console.log(numofchoice);   var cnt={};
+            console.log(numofchoice);   var cnt=[];
             for (let i=0;i<numofchoice;i++)
             {
-                cnt[i]={};
+                cnt[i]=[];
+                //console.log(cnt[i])
             }
 
 
@@ -103,7 +108,8 @@ x++;
 
 }
     form.cnt=cnt;
-         console.log(cnt);
+
+       
        resolve();
     })
       
@@ -161,7 +167,9 @@ x++;
     {
             let responseData = {data:{}}
             responseData.data=form;
-            console.log(responseData)
+            console.log(responseData);
+            console.log(form.cnt.length);
+            console.log(form.cnt[0].length);
             util.responseClient(res, 200, 1, 'success', responseData)
             
         
