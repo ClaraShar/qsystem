@@ -17,6 +17,10 @@ function analysis(req, res){
    // if(req.body.type) form.type=req.body.type;
    console.log(form.qid);
 var numofchoice=0;
+var t=new Date().getTime();
+
+
+
 
    let promise0 = new Promise((resolve, reject) => {
     quesModel.find({ qid:form.qid}).then(result=>{
@@ -25,11 +29,19 @@ var numofchoice=0;
         util.responseClient(res, 200, 0, 'not exists', responseData)
 form.author=result[0].author;
 form.title=result[0].title;
-form.status=result[0].status;
 form.total=result[0].total;
+form.status=result[0].status;
 form.start_time=result[0].start_time;
 form.time=result[0].time;
-
+if(t>result[0].time)
+{
+    form.status=2;
+    quesModel.findOneAndUpdate(
+        { qid: form.qid },
+        { $set:{ status: 2 } }).then((doc)=> {
+          
+        })
+}
 
 let i=0;while(result[i])
 {
@@ -162,6 +174,8 @@ x++;
         
     });
 
+
+   
 
     Promise.all([promise0,promise1,promise2]).then(function()
     {
