@@ -37,7 +37,7 @@ module.exports = function(app){
     //编辑提交页面
     app.post('/api/edit/submit',require('./submit'))
 
-    //编辑提交页面
+    //编辑保存页面
     app.post('/api/edit/save',require('./save'))
  
     //注册界面
@@ -53,10 +53,7 @@ module.exports = function(app){
     app.post('/api/ansFill',require('./ansFill'))
 
     //查看问卷fenxi
-    app.post('/api/analysis',require('./check/analysis'))
-
-    //查看问卷xyl改
-    app.post('/api/newAnalysis',require('./check/newAnalysis'))
+    // app.post('/api/analysis',require('./check/analysis'))
 
     //查看问卷
     app.post('/api/ques',require('./check/ques'))

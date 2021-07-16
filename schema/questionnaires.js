@@ -6,7 +6,6 @@ const ask_list = new mongoose.Schema({
     "type" : Number,//题型，1 单选；2 多选；3 问答
     "isNecessary" : Boolean,//是否必填项
     "ask" : String,//题目
-    "ans" : String,//问答内容，可为空
     "choice_list" : [{//选项列表
         //A项
         "cid" : Number,//选项编号（A，B，C）

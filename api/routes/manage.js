@@ -8,9 +8,14 @@ function manageQues(req, res){
         quesModel
             .find({author : username})
             .then(result => {
+                for(let i = 0; i < result.length; i++){
+                    var timestamp=new Date().getTime();
+                    if(timestamp < result[i].time){
+                        
+                    }
+                }
                 let responseData = { data: {} }
                 responseData.data = result;
-                console.log(responseData)
                 util.responseClient(res, 200, 1, 'success', responseData)
             })
         }).catch((err) => {
