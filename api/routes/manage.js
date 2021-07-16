@@ -8,16 +8,29 @@ function manageQues(req, res){
         quesModel
             .find({author : username})
             .then(result => {
+                var changeStatus = [];
                 for(let i = 0; i < result.length; i++){
-                    var timestamp=new Date().getTime();
-                    if(timestamp < result[i].time){
-                        
+                    var timestamp = parseInt(new Date().getTime());
+                    if(result[i].status != 2 && timestamp > parseInt(result[i].time)){
+                        result[i].status = 2;
+                        changeStatus.push(result[i].qid)
                     }
                 }
                 let responseData = { data: {} }
                 responseData.data = result;
+                console.log(responseData)
                 util.responseClient(res, 200, 1, 'success', responseData)
+                resolve(changeStatus)
             })
+        }).then( changeStatus => {
+            for(let i in changeStatus){
+                //数据库更改
+                quesModel
+                .findOneAndUpdate({qid:changeStatus[i]},{$set:{status:2}})
+                .then((doc) => {
+                    console.log("数据库修改成功")
+                })
+            }
         }).catch((err) => {
             console.log(err);
     })

@@ -11,7 +11,7 @@ function createSubmitQues(req, res){
 
     form.qid = 0;//失败默认为0
     form.status = 1;
-    form.count = 0;
+    form.total = 0;
     
     new Promise((resolve, reject) => {
         quesModel  

@@ -10,7 +10,7 @@ function createSaveQues(req, res){
 
     form.qid = 0;//失败默认为0
     form.status = 0;
-    form.count = 0;
+    form.total = 0;
     form.start_time = '';
     
     new Promise((resolve, reject) => {

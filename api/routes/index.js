@@ -53,7 +53,7 @@ module.exports = function(app){
     app.post('/api/ansFill',require('./ansFill'))
 
     //查看问卷fenxi
-    // app.post('/api/analysis',require('./check/analysis'))
+    app.get('/api/analysis',require('./check/analysis'))
 
     //查看问卷
     app.post('/api/ques',require('./check/ques'))
