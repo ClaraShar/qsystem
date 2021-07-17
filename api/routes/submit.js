@@ -17,10 +17,10 @@ function submitQues(req, res){
                 console.log(result);
                 let responseData = { data: {} }
                 if(!result){
-                    util.responseClient(res, 200, 1, '更新失败', responseData)
+                    util.responseClient(res, 200, 0, '更新失败', responseData)
                     return;
                 }
-                util.responseClient(res, 200, 0, '更新成功', responseData)
+                util.responseClient(res, 200, 1, '更新成功', responseData)
             })
         }).catch((err) => {
             console.log(err);
