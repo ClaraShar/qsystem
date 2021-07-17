@@ -1,11 +1,12 @@
 let util = require('./util')
 let userModel = require('../../model/users')
+let md5=require("md5")
 
 function changePassword(req, res){
     const form = {};
     if(req.body.user) form.user = req.body.user;
-    if(req.body.originPwd) form.originPwd = req.body.originPwd;
-    if(req.body.newPwd) form.newPwd = req.body.newPwd;
+    if(req.body.originPwd) form.originPwd = md5(req.body.originPwd);
+    if(req.body.newPwd) form.newPwd = md5(req.body.newPwd);
     
     new Promise((resolve, reject) => {
         userModel  
