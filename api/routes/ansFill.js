@@ -42,7 +42,7 @@ function ansFill(req, res){
 
 quesModel.find({qid:form.qid}).then(result=>
     {//var t0,status; console.log(1)
-        state.t0=result[0].time;
+        state.t0= parseInt(result[0].time);
         state.status=result[0].status;
         //state.console.log(t0);
         console.log(state)
@@ -77,11 +77,19 @@ quesModel.find({qid:form.qid}).then(result=>
                             console.log(responseData)
                             util.responseClient(res, 200, 1, 'success', responseData)
                         })
+        
+                       
+                        
                     }).catch((err) => {
                         console.log(err);
                     
                     });
-
+                    
+                
+        
+        
+        
+        
         let promise2=new Promise((resolve,reject)=>
         {
              //更新问卷表次数+1

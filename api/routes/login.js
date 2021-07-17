@@ -20,7 +20,7 @@ function login(req, res){
                     return;
                 }
                 //验证旧密码
-                if(md5(result[0].password) == form.pwd && result[0].username == form.user ){
+                if(result[0].password == form.pwd && result[0].username == form.user ){
                     util.responseClient(res, 200, 1, '登陆成功', responseData)
                     console.log( md5(result[0].password))
                 }

@@ -18,7 +18,7 @@ function analysis(req, res){
    console.log(form.qid);
 var numofchoice=0;
 var t=new Date().getTime();
-
+console.log(t);
 
 
 
@@ -27,21 +27,23 @@ var t=new Date().getTime();
         let responseData = {data:{}}
         if(!result[0])
         util.responseClient(res, 200, 0, 'not exists', responseData)
-        form.author=result[0].author;
-        form.title=result[0].title;
-        form.total=result[0].total;
-        form.status=result[0].status;
-        form.start_time=result[0].start_time;
-        form.time=result[0].time;
-        if(t>result[0].time)
-        {
-            form.status=2;
-            quesModel.findOneAndUpdate(
-                { qid: form.qid },
-                { $set:{ status: 2 } }).then((doc)=> {
-                
-                })
-        }
+form.author=result[0].author;
+form.title=result[0].title;
+form.total=result[0].total;
+form.status=result[0].status;
+form.start_time=result[0].start_time;
+form.time=result[0].time;
+if(t> parseInt(result[0].time))
+{
+    //parseInt(result[0].time);
+    console.log(result[0].time)
+    form.status=2;
+    quesModel.findOneAndUpdate(
+        { qid: form.qid },
+        { $set:{ status: 2 } }).then((doc)=> {
+          
+        })
+}
 
 let i=0;while(result[i])
 {
@@ -50,7 +52,7 @@ let i=0;while(result[i])
         
         if(numofchoice<result[i].ask_list[j].choice_list.length)
         numofchoice=result[i].ask_list[j].choice_list.length;
-        console.log(numofchoice);    
+       // console.log(numofchoice);    
         j++;
         
     }
@@ -67,7 +69,8 @@ let promise1=new Promise((resolve, reject) => {
 
     ansModel.find({qid:form.qid}).then(result =>
          {
-            console.log(numofchoice);   var cnt=[];
+            //console.log(numofchoice); 
+              var cnt=[];
             for (let i=0;i<numofchoice;i++)
             {
                 cnt[i]=[];
@@ -100,15 +103,16 @@ let promise1=new Promise((resolve, reject) => {
             {
                 let j=0; 
                 while(result[i].ans_list[j]){
-                    console.log(3);let k=0; 
+                    //console.log(3);
+                    let k=0; 
                     while( result[i].ans_list[j].choice[k])
                     {
                 if( ch[x] == result[i].ans_list[j].choice[k] )
                 {
                    
-                    console.log(cnt[x][j]);
+                   // console.log(cnt[x][j]);
                     cnt[x][j]+=1;
-                    console.log(cnt[x][j]);
+                   // console.log(cnt[x][j]);
                 }k++;
             }
                 j++; 
@@ -182,8 +186,8 @@ x++;
             let responseData = {data:{}}
             responseData.data=form;
             console.log(responseData);
-            console.log(form.cnt.length);
-            console.log(form.cnt[0].length);
+           // console.log(form.cnt.length);
+           // console.log(form.cnt[0].length);
             util.responseClient(res, 200, 1, 'success', responseData)
             
         
