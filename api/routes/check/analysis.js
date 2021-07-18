@@ -11,7 +11,7 @@ const ch=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R
 function analysis(req, res){
     const form = {};
    // console.log(ch[2])
-    if(req.body.qid) form.qid = req.query.qid;
+    if(req.query.qid) form.qid = req.query.qid;
     //form.ans_qid=req.body.ans_qid;
    // console.log(1);
    // if(req.body.type) form.type=req.body.type;
