@@ -10,7 +10,7 @@ function manageQues(req, res){
             .then(result => {
                 var changeStatus = [];
                 for(let i = 0; i < result.length; i++){
-                    var timestamp = parseInt(new Date().getTime());
+                    var timestamp = parseInt(new Date().getTime() / 1000);
                     if(result[i].status != 2 && timestamp > parseInt(result[i].time)){
                         result[i].status = 2;
                         changeStatus.push(result[i].qid)

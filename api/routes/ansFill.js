@@ -32,7 +32,7 @@ function ansFill(req, res){
     if(req.body.qid) form.qid = req.body.qid;
     //console.log(1);
     if(req.body.ans_list) form.ans_list=req.body.ans_list;
-     var t=new Date().getTime();
+     var t=new Date().getTime() / 1000;
  // var t= Date.now();
   //t.toLocaleString( );
    console.log(t);

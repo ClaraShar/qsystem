@@ -17,7 +17,7 @@ function analysis(req, res){
    // if(req.body.type) form.type=req.body.type;
    console.log(form.qid);
 var numofchoice=0;
-var t=new Date().getTime();
+var t=new Date().getTime() / 1000;
 console.log(t);
 
 
