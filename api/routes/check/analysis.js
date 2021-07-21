@@ -17,22 +17,22 @@ function analysis(req, res){
    // if(req.body.type) form.type=req.body.type;
    console.log(form.qid);
 var numofchoice=0;
-var t=new Date().getTime() / 1000;
+var t=new Date().getTime()/1000;
 console.log(t);
 
 
 
-   let promise0 = new Promise((resolve, reject) => {
+   let promise5=new Promise((resolve, reject) => {
     quesModel.find({ qid:form.qid}).then(result=>{
         let responseData = {data:{}}
         if(!result[0])
         util.responseClient(res, 200, 0, 'not exists', responseData)
-form.author=result[0].author;
-form.title=result[0].title;
-form.total=result[0].total;
-form.status=result[0].status;
-form.start_time=result[0].start_time;
-form.time=result[0].time;
+        form.author=result[0].author;
+        form.title=result[0].title;
+        form.total=result[0].total;
+        form.status=result[0].status;
+        form.start_time=result[0].start_time;
+        form.time=result[0].time;
 if(t> parseInt(result[0].time))
 {
     //parseInt(result[0].time);
@@ -42,7 +42,9 @@ if(t> parseInt(result[0].time))
         { qid: form.qid },
         { $set:{ status: 2 } }).then((doc)=> {
           
-        })
+        }).catch((err) => {
+            console.log(err);
+    })
 }
 
 let i=0;while(result[i])
@@ -65,7 +67,7 @@ let i=0;while(result[i])
 
 
 //统计每一题的x选数量
-let promise1=new Promise((resolve, reject) => {
+let promise6=new Promise((resolve, reject) => {
 
     ansModel.find({qid:form.qid}).then(result =>
          {
@@ -127,14 +129,16 @@ x++;
 
        
        resolve();
-    })
+    }).catch((err) => {
+        console.log(err);
+})
       
        
 
 });
 
 
-   let promise2=new Promise((resolve, reject) => {
+   let promise7=new Promise((resolve, reject) => {
 
         ansModel.find({qid:form.qid,'ans_list.choice':{$exists:true}}).then(result =>
              {
@@ -172,7 +176,9 @@ x++;
              form.count=count;
              console.log(form.count);
            resolve();
-        })
+        }).catch((err) => {
+            console.log(err);
+    })
           
            
         
@@ -181,7 +187,7 @@ x++;
 
    
 
-    Promise.all([promise0,promise1,promise2]).then(function()
+    Promise.all([promise5,promise6,promise7]).then(function()
     {
             let responseData = {data:{}}
             responseData.data=form;
