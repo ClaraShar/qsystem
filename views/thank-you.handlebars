@@ -286,7 +286,7 @@
     });*/
 
 //----------------createSave------------
-const Params={
+/*const Params={
         "author":"xyl2",
         "title":"createSave test",
         "time": "200000000",
@@ -368,6 +368,23 @@ fetch('/api/createSave',{
     }).then(res => res.json())
         .then(res=>{
         console.log(res);
+    });*/
+    const Params = {
+        "qid" : 141,
+        "title":"111",
+        "start_time": "1626876421",
+        "ask_list": [],
+        "time": "1626962811" 
+    }
+    fetch('/api/edit/submit',{
+        method: 'post',
+        body: JSON.stringify(Params),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+    }).then(res => res.json())
+        .then(res=>{
+        console.log(res.data.data);
     });
-    
 </script>

@@ -12,7 +12,7 @@ function submitQues(req, res){
     
     new Promise((resolve, reject) => {
         quesModel  
-            .findOneAndUpdate({qid:form.qid},{$set:{title:form.title, time:form.time, ask_list:form.ask_list, status:form.status}})
+            .findOneAndUpdate({qid:form.qid},{$set:{title:form.title, start_time: form.start_time, time:form.time, ask_list:form.ask_list, status:form.status}})
             .then(result => {
                 console.log(result);
                 let responseData = { data: {} }
